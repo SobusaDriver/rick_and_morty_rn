@@ -1,6 +1,8 @@
+type PageInfo = { pageNumber: number; isLastPage: boolean };
+
 export type RootStackParamsList = {
 	Home: undefined;
-	ListOfCharacters: { pageNumber: number; isLastPage: boolean };
-	ListOfLocations: { pageNumber: number; isLastPage: boolean };
-	ListOfEpisodes: { pageNumber: number; isLastPage: boolean };
+	ListOfCharacters: PageInfo;
+	ListOfLocations: PageInfo;
+	ListOfEpisodes: PageInfo;
 };

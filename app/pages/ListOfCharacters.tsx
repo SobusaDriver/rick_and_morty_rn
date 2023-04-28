@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { useState, useEffect } from "react";
 import { getCharacters } from "../services";
 import CardItem from "../components/CardItem";
