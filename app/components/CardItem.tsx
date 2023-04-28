@@ -10,7 +10,7 @@ function CardItem({ title, body, imageUrl }: CardItemProps) {
 		<View style={styles.cardContainer}>
 			<Image style={styles.image} source={{ uri: imageUrl }} />
 			<View style={styles.details}>
-				<Text>{title}</Text>
+				<Text style={styles.text}>{title}</Text>
 				<Text>{body}</Text>
 			</View>
 		</View>
@@ -19,23 +19,28 @@ function CardItem({ title, body, imageUrl }: CardItemProps) {
 
 const styles = StyleSheet.create({
 	cardContainer: {
-		flex: 1,
+		// flex: 1,
 		flexDirection: "row",
+		flexShrink: 1,
+		height: 140,
 		padding: 20,
+		margin: 20,
+		borderRadius: 6,
+		backgroundColor: "#78cce2",
 	},
 	image: {
 		flex: 1,
-		resizeMode: "contain",
+		resizeMode: "stretch",
+		height: 100,
+		borderRadius: 6,
 	},
 	details: {
-		flex: 3,
+		flex: 2,
+		paddingLeft: 16,
+		height: 100,
 	},
-	bottomPaginator: {
-		flex: 1,
-		flexDirection: "row",
-	},
-	paginatorButton: {
-		flex: 1,
+	text: {
+		color: "#ffffff",
 	},
 });
 
