@@ -9,6 +9,7 @@ import { RootStackParamsList } from "./app/types/StackParams";
 import ListOfLocations from "./app/pages/ListOfLocations";
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
+const initParams = { pageNumber: 1, isLastPage: false };
 export default function App() {
 	return (
 		<NavigationContainer>
@@ -23,19 +24,19 @@ export default function App() {
 					name="ListOfCharacters"
 					options={{ title: "List Of All Characters" }}
 					component={ListOfCharacters}
-					initialParams={{ pageNumber: 1, isLastPage: false }}
+					initialParams={initParams}
 				/>
 				<Stack.Screen
 					name="ListOfEpisodes"
 					options={{ title: "List of All Episodes" }}
 					component={ListOfEpisodes}
-					initialParams={{ pageNumber: 1, isLastPage: false }}
+					initialParams={initParams}
 				/>
 				<Stack.Screen
 					name="ListOfLocations"
 					options={{ title: "List Of All Locations" }}
 					component={ListOfLocations}
-					initialParams={{ pageNumber: 1, isLastPage: false }}
+					initialParams={initParams}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
