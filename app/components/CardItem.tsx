@@ -1,7 +1,7 @@
 import { View, StyleSheet, Image, Text } from "react-native";
 
 type CardItemProps = {
-	imageUrl: string;
+	imageUrl?: string;
 	title: string;
 	body: string;
 };

@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View, Text, Button, StyleSheet, ImageBackground } from "react-native";
 import { RootStackParamsList } from "../types/StackParams";
 import { BACKGROUND_IMAGE } from "../../CONSTANTS";
-import Backgroundimage from "../../assets/rick-and-morty-background.jpg";
+import BackgroundImage from "../../assets/rick-and-morty-background.jpg";
 
 type props = NativeStackScreenProps<RootStackParamsList, "Home">;
 
@@ -10,7 +10,7 @@ function HomePage({ navigation, route }: props) {
 	return (
 		<View style={styles.viewContainer}>
 			<ImageBackground
-				source={Backgroundimage}
+				source={BackgroundImage}
 				resizeMode="cover"
 				style={styles.backgroundImage}
 			>
@@ -37,7 +37,7 @@ function HomePage({ navigation, route }: props) {
 							title="Go To Episodes"
 							color="#002439"
 							onPress={() =>
-								navigation.push("ListOfCharacters", {
+								navigation.push("ListOfEpisodes", {
 									pageNumber: 1,
 									isLastPage: false,
 								})
@@ -49,7 +49,7 @@ function HomePage({ navigation, route }: props) {
 							title="Go To Locations"
 							color="#002439"
 							onPress={() =>
-								navigation.push("ListOfCharacters", {
+								navigation.push("ListOfLocations", {
 									pageNumber: 1,
 									isLastPage: false,
 								})
