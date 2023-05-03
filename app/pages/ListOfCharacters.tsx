@@ -10,37 +10,29 @@ type props = NativeStackScreenProps<RootStackParamsList, "ListOfCharacters">;
 
 function ListOfCharacters({ route, navigation }: props) {
 	const [pageNumber, setPageNumber] = useState<number>(route.params.pageNumber);
-	const [characters, setCharacters] = useState<Character[]>();
+	const [characters, setCharacters] = useState<Character[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(0);
+
 	const fetchCharacters = async () => {
 		const response = await getCharacters(pageNumber);
-		setCharacters((prevCharacters) => prevCharacters?.concat(response.results));
+		setCharacters((prevCharacters) =>
+			prevCharacters.concat(...response.results),
+		);
 		if (pageNumber === 1) {
 			setTotalPages(response.info?.pages);
 		}
 	};
-	useEffect(() => {
-		(async () => {
-			const response = await getCharacters();
-			setCharacters(response.results);
-			setTotalPages(Number(response.info?.pages));
-			console.log(pageNumber, response.info?.pages);
-		})();
-	}, []);
-	useEffect(() => {
-		(async () => {
-			const res = await getCharacters(pageNumber);
-			setCharacters((prevList) => prevList?.concat(...res.results));
-		})();
-	}, [pageNumber]);
 
 	const fetchMoreData = async () => {
-		if (pageNumber <= totalPages) {
-			const req = await getCharacters(pageNumber);
+		if (pageNumber < totalPages) {
 			setPageNumber((prevPage) => prevPage + 1);
-			console.log(pageNumber);
 		}
 	};
+
+	useEffect(() => {
+		fetchCharacters();
+	}, [pageNumber]);
+
 	return (
 		<View style={styles.viewContainer}>
 			{characters && (
