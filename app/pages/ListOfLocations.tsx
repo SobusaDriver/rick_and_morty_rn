@@ -1,21 +1,21 @@
 import { View, StyleSheet, FlatList } from "react-native";
 import { useState, useEffect } from "react";
-import { getEpisodes } from "../services";
+import { getLocations } from "../services";
 import CardItem from "../components/CardItem";
 import { RootStackParamsList } from "../types/StackParams";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import Episode from "../types/Episode";
+import Location from "../types/Location";
 
-type props = NativeStackScreenProps<RootStackParamsList, "ListOfEpisodes">;
+type props = NativeStackScreenProps<RootStackParamsList, "ListOfLocations">;
 
-function ListOfEpisodes({ route, navigation }: props) {
+function ListOfLocations({ route, navigation }: props) {
 	const [pageNumber, setPageNumber] = useState<number>(route.params.pageNumber);
-	const [Episodes, setEpisodes] = useState<Episode[]>([]);
+	const [Locations, setLocations] = useState<Location[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(0);
 
-	const fetchEpisodes = async () => {
-		const response = await getEpisodes(pageNumber);
-		setEpisodes((prevEpisodes) => prevEpisodes.concat(...response.results));
+	const fetchLocations = async () => {
+		const response = await getLocations(pageNumber);
+		setLocations((prevLocations) => prevLocations.concat(...response.results));
 		if (pageNumber === 1) {
 			setTotalPages(response.info?.pages);
 		}
@@ -28,20 +28,20 @@ function ListOfEpisodes({ route, navigation }: props) {
 	};
 
 	useEffect(() => {
-		fetchEpisodes();
+		fetchLocations();
 	}, [pageNumber]);
 
 	return (
 		<View style={styles.viewContainer}>
-			{Episodes && (
+			{Locations && (
 				<FlatList
 					style={{ width: "100%" }}
-					data={Episodes}
+					data={Locations}
 					renderItem={({ item }) => {
 						return (
 							<CardItem
 								title={item.name}
-								body={`Episode: ${item.episode}\nAir Date: ${item.air_date}\nCreated: ${item.created}`}
+								body={`Type: ${item.type}\nDimension: ${item.dimension}\nCreated: ${item.created}`}
 							/>
 						);
 					}}
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ListOfEpisodes;
+export default ListOfLocations;
