@@ -8,7 +8,7 @@ type CardItemProps = {
 function CardItem({ title, body, imageUrl }: CardItemProps) {
 	return (
 		<View style={styles.cardContainer}>
-			<Image style={styles.image} source={{ uri: imageUrl }} />
+			{imageUrl && <Image style={styles.image} source={{ uri: imageUrl }} />}
 			<View style={styles.details}>
 				<Text style={styles.text}>{title}</Text>
 				<Text>{body}</Text>
