@@ -8,7 +8,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type props = NativeStackScreenProps<RootStackParamsList, "ListOfCharacters">;
 
-function ListOfCharacters({ route, navigation }: props) {
+function ListOfCharacters({ route }: props) {
 	const [pageNumber, setPageNumber] = useState<number>(route.params.pageNumber);
 	const [characters, setCharacters] = useState<Character[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(0);
